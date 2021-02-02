@@ -1,5 +1,8 @@
 package org.fundacionjala.app.quizz;
 
+import java.util.Map;
+import java.util.HashMap;
+
 import org.fundacionjala.app.quizz.console.QuizUIHandler;
 import org.fundacionjala.app.quizz.model.Quiz;
 import org.fundacionjala.app.quizz.model.QuizAnswers;
@@ -19,23 +22,18 @@ public class Menu {
         showMainMenu();
         char option = InputReader.readOption();
         boolean shouldExit = false;
-        switch (option) {
-            case '1':
-                quiz = QuizUIHandler.createQuiz();
-                break;
-            case '2':
-                fillQuiz();
-                break;
-            case '3':
-                showQuiz();
-                break;
-            case '4':
-                shouldExit = true;
-                break;
-            default:
-                System.out.println("Invalid option");
-                break;
+        try {
+            Map<Character, Runnable> commands = new HashMap<>();
+            commands.put('1', () -> quiz = QuizUIHandler.createQuiz());
+            commands.put('2', () -> fillQuiz());
+            commands.put('3', () -> showQuiz());
+            commands.get(option).run();
+            
+        } catch (Exception e) {
+            System.out.println("closing");
+            shouldExit = true;
         }
+
 
         System.out.println(System.lineSeparator());
         return shouldExit;
