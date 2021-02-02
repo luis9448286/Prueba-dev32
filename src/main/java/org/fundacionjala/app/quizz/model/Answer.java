@@ -14,6 +14,10 @@ public class Answer {
 
     @Override
     public String toString() {
-        return "Question:" + question.getTitle() + "\n Answer: " + Arrays.toString(answers.toArray());
+        String result = "Question: " + question.getTitle() + "\n" ;
+        for(String answer: answers ){
+            result += "Answer: " + answer;
+        }
+        return result;
     }
 }

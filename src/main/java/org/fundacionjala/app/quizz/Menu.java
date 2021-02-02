@@ -1,5 +1,8 @@
 package org.fundacionjala.app.quizz;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.fundacionjala.app.quizz.console.QuizUIHandler;
 import org.fundacionjala.app.quizz.model.Quiz;
 import org.fundacionjala.app.quizz.model.QuizAnswers;
@@ -19,6 +22,17 @@ public class Menu {
         showMainMenu();
         char option = InputReader.readOption();
         boolean shouldExit = false;
+        // try {
+        //     ArrayList<Object> arr = new ArrayList<Object>(); 
+        //     arr.add(QuizUIHandler.createQuiz());
+        //     arr.add(Menu.class.getMethod("fillQuiz").invoke(null));
+        //     arr.add(Menu.class.getMethod("showQuiz").invoke(null));
+        //     arr.get(Character.getNumericValue(option) - 1);
+            
+        // } catch (Exception e) {
+        //     //TODO: handle exception
+        // }
+        
         switch (option) {
             case '1':
                 quiz = QuizUIHandler.createQuiz();
@@ -36,6 +50,7 @@ public class Menu {
                 System.out.println("Invalid option");
                 break;
         }
+
 
         System.out.println(System.lineSeparator());
         return shouldExit;
