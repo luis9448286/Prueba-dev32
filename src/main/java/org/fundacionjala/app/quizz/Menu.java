@@ -1,7 +1,7 @@
 package org.fundacionjala.app.quizz;
 
-import java.util.List;
-import java.util.ArrayList;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.fundacionjala.app.quizz.console.QuizUIHandler;
 import org.fundacionjala.app.quizz.model.Quiz;
@@ -22,33 +22,16 @@ public class Menu {
         showMainMenu();
         char option = InputReader.readOption();
         boolean shouldExit = false;
-        // try {
-        //     ArrayList<Object> arr = new ArrayList<Object>(); 
-        //     arr.add(QuizUIHandler.createQuiz());
-        //     arr.add(Menu.class.getMethod("fillQuiz").invoke(null));
-        //     arr.add(Menu.class.getMethod("showQuiz").invoke(null));
-        //     arr.get(Character.getNumericValue(option) - 1);
+        try {
+            Map<Character, Runnable> commands = new HashMap<>();
+            commands.put('1', () -> quiz = QuizUIHandler.createQuiz());
+            commands.put('2', () -> fillQuiz());
+            commands.put('3', () -> showQuiz());
+            commands.get(option).run();
             
-        // } catch (Exception e) {
-        //     //TODO: handle exception
-        // }
-        
-        switch (option) {
-            case '1':
-                quiz = QuizUIHandler.createQuiz();
-                break;
-            case '2':
-                fillQuiz();
-                break;
-            case '3':
-                showQuiz();
-                break;
-            case '4':
-                shouldExit = true;
-                break;
-            default:
-                System.out.println("Invalid option");
-                break;
+        } catch (Exception e) {
+            System.out.println("closing");
+            shouldExit = true;
         }
 
 
