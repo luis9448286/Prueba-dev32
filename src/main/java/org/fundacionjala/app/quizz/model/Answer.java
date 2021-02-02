@@ -14,6 +14,6 @@ public class Answer {
 
     @Override
     public String toString() {
-        return question.getTitle() + ": " + Arrays.toString(answers.toArray());
+        return "Question:" + question.getTitle() + "\n Answer: " + Arrays.toString(answers.toArray());
     }
 }
